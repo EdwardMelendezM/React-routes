@@ -4,7 +4,7 @@ import SongDetails from "./SongDetails";
 import SongForm from "./SongForm";
 import { helpHttp } from "../helpers/helpHttp";
 
-const SongSeach = () => {
+const SongSearch = () => {
   const [search, setSearch] = useState(null);
   const [lyric, setLyric] = useState(null);
   const [bio, setBio] = useState(null);
@@ -57,4 +57,4 @@ const SongSeach = () => {
   );
 };
 
-export default SongSeach;
+export default SongSearch;
