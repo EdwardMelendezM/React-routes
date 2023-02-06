@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const initialForm = {
   name: "",
   constellation: "",
@@ -6,6 +8,7 @@ const initialForm = {
 };
 const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const [form, setForm] = useState(initialForm);
+  let navigatex = useNavigate();
 
   useEffect(() => {
     if (dataToEdit) {
@@ -37,6 +40,7 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const handleReset = (e) => {
     setForm(initialForm);
     setDataToEdit(null);
+    navigatex("/");
   };
   return (
     <div>
