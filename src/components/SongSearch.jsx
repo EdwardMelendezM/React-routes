@@ -66,7 +66,11 @@ const SongSearch = () => {
             path="/"
             element={
               <>
-                <SongForm handleSearch={handleSearch} />
+                <SongForm
+                  handleSearch={handleSearch}
+                  handleSaveSong={handleSaveSong}
+                />
+                <h2>Tabla de canciones</h2>
                 {search && !loading && (
                   <SongDetails search={search} lyric={lyric} bio={bio} />
                 )}
