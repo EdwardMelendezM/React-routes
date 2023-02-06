@@ -1,12 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Acerca from "../pages/Acerca";
 import Contacto from "../pages/Contacto";
+import Dashboard from "../pages/Dashboard";
 import Error404 from "../pages/Error404";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
 import Productos from "../pages/Productos";
 import { ReactTopics, Jsx } from "../pages/ReactTopics";
 import Usuario from "../pages/Usuario";
 import MenuConceptos from "./MenuConceptos";
+import PrivateRoute from "./PrivateRoute";
 
 const ConceptosBasicos = () => {
   return (
@@ -28,12 +31,17 @@ const ConceptosBasicos = () => {
           <Route path="/productos" element={<Productos />} />
           <Route path="/about" element={<Navigate to="/acerca" />} />
           <Route path="/contact" element={<Navigate to="/contacto" />} />
-          <Route path="/react" element={<ReactTopics />}>
+          <Route path="/react/*" element={<ReactTopics />}>
             <Route path="jsx" />
             <Route path="props" />
             <Route path="estado" />
             <Route path="componente" />
           </Route>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={<PrivateRoute private={Dashboard} />}
+          />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
