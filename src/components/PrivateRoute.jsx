@@ -1,9 +1,8 @@
 import { Navigate } from "react-router-dom";
 
 let auth;
-
-auth = true;
 auth = null;
+auth = true;
 
 const PrivateRoute = ({ private: Private }) => {
   return auth ? <Private /> : <Navigate to="/login" />;
