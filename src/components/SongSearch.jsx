@@ -3,12 +3,16 @@ import Loader from "./Loader";
 import SongDetails from "./SongDetails";
 import SongForm from "./SongForm";
 import { helpHttp } from "../helpers/helpHttp";
+import { HashRouter, Link, Route, Routes } from "react-router-dom";
+import Error404 from "../pages/Error404";
 
+const mySongsInitial = JSON.parse(localStorage.getItem("mySongs")) || [];
 const SongSearch = () => {
   const [search, setSearch] = useState(null);
   const [lyric, setLyric] = useState(null);
   const [bio, setBio] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [mySongs, setMySongs] = useState(mySongsInitial);
 
   useEffect(() => {
     if (search === null) return;
@@ -36,23 +40,43 @@ const SongSearch = () => {
     };
 
     fetchData();
-  }, [search]);
+    localStorage.setItem("mySongs", JSON.stringify(mySongs));
+  }, [search, mySongs]);
 
   const handleSearch = (data) => {
-    //console.log(data);
     setSearch(data);
   };
+  const handleSaveSong = () => {
+    alert("Salvando cancion en favoritas");
+  };
+  const handleDeleteSong = (id) => {};
 
   return (
     <div>
       <h2>Song Search</h2>
-      <article className="grid-1-3">
-        <SongForm handleSearch={handleSearch} />
-        {loading && <Loader />}
-        {search && !loading && (
-          <SongDetails search={search} lyric={lyric} bio={bio} />
-        )}
-      </article>
+      <article className="grid-1-3">{loading && <Loader />}</article>
+      <HashRouter>
+        <header>
+          <h2>Son Search</h2>
+          <Link to="/">Home</Link>
+          <Link to="/canciones">Cancion</Link>
+        </header>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SongForm handleSearch={handleSearch} />
+                {search && !loading && (
+                  <SongDetails search={search} lyric={lyric} bio={bio} />
+                )}
+              </>
+            }
+          />
+          <Route path="/canciones/:id" element={<h1>Pagina de canciones</h1>} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 };

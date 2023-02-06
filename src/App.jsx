@@ -14,10 +14,10 @@ function App() {
       >
         Documentacion
       </a>
-      {/* <hr />
-      <SongSearch /> */}
       <hr />
-      <CrudApi />
+      <SongSearch />
+      <hr />
+      {/* <CrudApi /> */}
       <hr />
       {/* <ConceptosBasicos /> */}
     </div>
