@@ -42,6 +42,10 @@ const MenuConceptos = () => {
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </li>
+        <li>
+          <span>Rutas anidadas</span>
+          <Link to="/react">React topics</Link>
+        </li>
       </ol>
     </nav>
   );
