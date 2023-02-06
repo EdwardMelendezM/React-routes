@@ -8,7 +8,6 @@ const Productos = () => {
   let end = parseInt(query.get("fin")) || LIMIT;
 
   let navigate = useNavigate();
-  console.log(navigate);
   const handlePRev = () => {
     navigate(`?inicio=${start - LIMIT}&fin=${end - LIMIT}`);
   };
